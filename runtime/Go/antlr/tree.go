@@ -30,6 +30,7 @@ type ParseTree interface {
 
 	Accept(Visitor ParseTreeVisitor) interface{}
 	GetText() string
+	GetTextWithSpace() string
 
 	ToStringTree([]string, Recognizer) string
 }
@@ -169,6 +170,10 @@ func (t *TerminalNodeImpl) Accept(v ParseTreeVisitor) interface{} {
 
 func (t *TerminalNodeImpl) GetText() string {
 	return t.symbol.GetText()
+}
+
+func (t *TerminalNodeImpl) GetTextWithSpace() string {
+	return t.symbol.GetText() + " "
 }
 
 func (t *TerminalNodeImpl) String() string {

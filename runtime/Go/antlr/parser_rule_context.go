@@ -90,6 +90,19 @@ func (prc *BaseParserRuleContext) GetText() string {
 	return s
 }
 
+func (prc *BaseParserRuleContext) GetTextWithSpace() string {
+	if prc.GetChildCount() == 0 {
+		return ""
+	}
+
+	var s string
+	for _, child := range prc.children {
+		s += child.(ParseTree).GetTextWithSpace()
+	}
+
+	return s
+}
+
 // Double dispatch methods for listeners
 func (prc *BaseParserRuleContext) EnterRule(listener ParseTreeListener) {
 }
